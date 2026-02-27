@@ -1,0 +1,24 @@
+{
+  "name": "preorder-with-seye-backend",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @sws/api",
+    "dev:worker": "npm run dev -w @sws/worker",
+    "build": "npm run build -w @sws/shared-types && npm run build -w @sws/api && npm run build -w @sws/worker",
+    "lint": "npm run lint -w @sws/api && npm run lint -w @sws/worker",
+    "migrate:up": "migrate-mongo up -f ./migrate-mongo-config.cjs",
+    "migrate:down": "migrate-mongo down -f ./migrate-mongo-config.cjs",
+    "migrate:status": "migrate-mongo status -f ./migrate-mongo-config.cjs"
+  },
+  "devDependencies": {
+    "migrate-mongo": "^12.1.3"
+  },
+  "dependencies": {
+    "mongodb": "^6.21.0"
+  }
+}
