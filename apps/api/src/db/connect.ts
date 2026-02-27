@@ -10,7 +10,9 @@ export async function connectDatabase() {
 
   await mongoose.connect(env.MONGODB_URI, {
     dbName: "shop_with_seye",
-    serverSelectionTimeoutMS: 5000
+    serverSelectionTimeoutMS: 15000,
+    tls: true,
+    family: 4
   });
   isConnected = true;
 }
