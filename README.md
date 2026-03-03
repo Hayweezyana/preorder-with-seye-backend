@@ -23,7 +23,9 @@ Sibling backend repository for Shop with Seye.
 1. Copy `.env.example` to `.env` and fill secrets.
 2. Run migrations: `npm run migrate:up`.
 3. Start API: `npm run dev:api`.
-4. Start worker: `npm run dev:worker`.
+4. Optional: start standalone worker only if you want a dedicated background process: `npm run dev:worker`.
+
+By default, API starts an embedded BullMQ worker (`EMBED_NOTIFICATIONS_WORKER=true`) so you can deploy only the API service and still process notification jobs.
 
 ## Required Headers
 
@@ -65,7 +67,7 @@ Guest cart support requires:
 - Queue: `sws-notifications`
 - Job: `order-status`
 - Triggered when order status moves to `paid`, `shipped`, or `delivered`.
-- Produced by API and consumed by `apps/worker`.
+- Produced by API and consumed by the API embedded worker (default) or `apps/worker` (optional dedicated worker service).
 
 ## SMTP Email (immersiavr.com)
 
